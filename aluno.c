@@ -3,9 +3,7 @@
 
 void menuAluno()
 {
-
     int opcaoAluno;
-
     do
     {
         printf("\n===== MENU ALUNO =====\n");
@@ -26,7 +24,7 @@ void menuAluno()
             printf("Aqui sera exibido o treino do aluno logado\n");
             break;
         case 3:
-            printf("Aqui sera exibido a dieta do aluno logado\n");
+            printf("Aqui sera exibida a dieta do aluno logado\n");
             break;
         case 4:
             printf("Logoff\n");

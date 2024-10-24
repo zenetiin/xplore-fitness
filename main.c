@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "personal.h"
 #include "aluno.h"
 
@@ -17,6 +18,9 @@ void loginAluno()
 int main()
 {
     int opcao;
+    char usuario[50], senha[50];
+
+    inicializarUsuarios(); 
 
     do
     {
@@ -31,14 +35,30 @@ int main()
         switch (opcao)
         {
         case 1:
-            loginPersonal();
+            printf("Usuario: ");
+            scanf("%s", usuario); 
+            printf("Senha: ");
+            scanf("%s", senha);
+
+            if (validarLogin(usuario, senha))
+            {
+                printf("Login com sucesso\n");
+                menuPersonal();
+            }
+            else
+            {
+                printf("Usuario ou senha incorretos, tente novamente\n");
+            }
             break;
+
         case 2:
             loginAluno();
             break;
+
         case 3:
-            printf("Logoff\n");
+            printf("Até a próxima\n");
             break;
+
         default:
             printf("Opção inexistente\n");
         }
