@@ -3,80 +3,67 @@
 #include "personal.h"
 #include "aluno.h"
 
-void loginPersonal()
-{
-    printf("Entrando como Personal.\n");
-    menuPersonal();
-}
-
-void loginAluno()
-{
-    printf("Entrando como Aluno.\n");
-    menuAluno();
-}
-
 int main()
 {
-    int opcao;
-    char usuario[50], senha[50];
-
-    inicializarUsuarios(); 
     inicializarAlunos();
+    inicializarUsuarios();
+
+    int opcaoLogin; // alteração do menu para a opção login, mais facil
 
     do
     {
-        printf("\n===== MENUZIN INICIAL =====\n");
-        printf("1. Login como Personal\n");
-        printf("2. Login como Aluno\n");
+        printf("===== MENU DE LOGIN =====\n");
+        printf("1. Login como Aluno\n");
+        printf("2. Login como Personal\n");
         printf("3. Sair\n");
-        printf("=============================\n");
-        printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        printf("=========================\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcaoLogin);
 
-        switch (opcao)
+        if (opcaoLogin == 1)
         {
-        case 1:
-            printf("Usuario: ");
-            scanf("%s", usuario); 
-            printf("Senha: ");
+            char usuario[50], senha[50];
+            printf("Digite seu usuário: ");
+            scanf("%s", usuario);
+            printf("Digite sua senha: ");
+            scanf("%s", senha);
+
+            int alunoIndex = buscarAlunoPorSenha(senha); // acha o caba pelo indice da senha aqui ó
+            if (alunoIndex != -1)
+            {                          
+                menuAluno(alunoIndex); 
+            }
+            else
+            {
+                printf("Login de aluno falhou!\n");
+            }
+        }
+        else if (opcaoLogin == 2)
+        {
+            char usuario[50], senha[50];
+            printf("Digite seu usuário: ");
+            scanf("%s", usuario);
+            printf("Digite sua senha: ");
             scanf("%s", senha);
 
             if (validarLogin(usuario, senha))
             {
-                printf("Login com sucesso\n");
                 menuPersonal();
             }
             else
             {
-                printf("Usuario ou senha incorretos, tente novamente\n");
+                printf("Login de personal falhou!\n");
             }
-            break;
-
-        case 2:
-            printf("Usuario: ");
-            scanf("%s", usuario);
-            printf("Senha: ");
-            scanf("%s", senha);
-
-            if (validarLoginAluno(usuario, senha))
-            {
-                printf("Login bem sucedido\n");
-                loginAluno();
-            }
-            else
-            {
-                printf("Usuario ou senha incorretos\n");
-            }
-            break;
-
-        case 3:
-            printf("Até a próxima\n");
-            break;
-
-        default:
-            printf("Opção inexistente\n");
         }
-    } while (opcao != 3);
+        else if (opcaoLogin == 3)
+        {
+            printf("Saindo...\n");
+        }
+        else
+        {
+            printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcaoLogin != 3);
 
     return 0;
 }

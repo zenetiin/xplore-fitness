@@ -18,6 +18,9 @@ extern struct Aluno
 extern struct Aluno tabelaAluno[MAX_ALUNOS];
 void inicializarAlunos();
 int validarLoginAluno(char usuario[], char senha[]);
-void menuAluno();
+void menuAluno(int alunoIndex);
+void exibirInformacoesPessoais(int alunoIndex);
+void editarInformacoesPessoais(int alunoIndex);
+extern int buscarAlunoPorSenha(char senha[]); // extern pra geral usar
 
 #endif

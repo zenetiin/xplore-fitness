@@ -6,7 +6,7 @@
 struct Personal tabelaPersonal[MAX_USERS];
 struct Aluno tabelaAluno[MAX_ALUNOS];
 
-// startando ryamzin do grau
+// inicializando ryam vaqueiro
 void inicializarUsuarios()
 {
     strcpy(tabelaPersonal[0].usuario, "ryam");
@@ -21,7 +21,7 @@ int validarLogin(char usuario[], char senha[])
         printf("Comparando com o usuário: %s\n", tabelaPersonal[i].usuario); // debug
         if (strcmp(tabelaPersonal[i].usuario, usuario) == 0 && strcmp(tabelaPersonal[i].senha, senha) == 0)
         {
-            printf("Login bem-sucedido!\n"); // debug
+            printf("Login bem-sucedido!\n"); // --------------------debug
             return 1;
         }
     }
@@ -45,7 +45,7 @@ void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float
             for (int j = 0; j < MAX_DIAS; j++)
             {
                 strcpy(tabelaAluno[i].treino[j], treino[j]); // pega os treinos do aluno
-                strcpy(tabelaAluno[i].dieta[j], dieta[j]);   // pega as dietas do aluno
+                strcpy(tabelaAluno[i].dieta[j], dieta[j]);   // cata as dietas do aluno
             }
             printf("Aluno %s cadastrado com sucesso!\n", usuario);
             break;
@@ -71,9 +71,9 @@ void editarTreino()
         for (int j = 0; j < MAX_DIAS; j++)
         {
             printf("Digite o treino para %s: ", diasSemana[j]);
-            fgets(treinoDia, sizeof(treinoDia), stdin);       // le a entrada do treino
-            treinoDia[strcspn(treinoDia, "\n")] = 0;          // remove o \n do fgets
-            strcpy(tabelaAluno[indice].treino[j], treinoDia); // bota o treino por cima do antigo
+            fgets(treinoDia, sizeof(treinoDia), stdin);
+            treinoDia[strcspn(treinoDia, "\n")] = 0;
+            strcpy(tabelaAluno[indice].treino[j], treinoDia);
         }
         printf("Treinos atualizados com sucesso para o aluno %s!\n", tabelaAluno[indice].usuario);
     }
@@ -101,9 +101,9 @@ void editarDieta()
         for (int j = 0; j < MAX_DIAS; j++)
         {
             printf("Digite a dieta para %s: ", diasSemana[j]);
-            fgets(dietaDia, sizeof(dietaDia), stdin);       // Le a entrada da dieta todinha
-            dietaDia[strcspn(dietaDia, "\n")] = 0;          // remove o \n do fgets
-            strcpy(tabelaAluno[indice].dieta[j], dietaDia); // joga essa dieta por cima da que tiver la
+            fgets(dietaDia, sizeof(dietaDia), stdin);
+            dietaDia[strcspn(dietaDia, "\n")] = 0;
+            strcpy(tabelaAluno[indice].dieta[j], dietaDia);
         }
         printf("Dietas atualizadas com sucesso para o aluno %s!\n", tabelaAluno[indice].usuario);
     }
@@ -127,8 +127,8 @@ int buscarAlunoPorSenha(char senha[])
 
 void excluirAluno(int indice)
 {
-    tabelaAluno[indice].usuario[0] = '\0'; // F usuário
-    tabelaAluno[indice].senha[0] = '\0';   // F senha
+    tabelaAluno[indice].usuario[0] = '\0'; // usuario pra casa do chapeu
+    tabelaAluno[indice].senha[0] = '\0';   // senha pra casa do chapeu tambem
     printf("Aluno excluído com sucesso.\n");
 }
 
@@ -170,7 +170,7 @@ void exibirInformacoesAluno()
             switch (opcao)
             {
             case 1:
-                excluirAluno(i); // o i é onde o aluno ta na hash
+                excluirAluno(i);
                 return;
             case 2:
                 printf("Retornando ao menu Personal...\n");
@@ -182,6 +182,100 @@ void exibirInformacoesAluno()
         }
     }
     printf("Aluno não encontrado!\n");
+}
+
+void cadastrarPersonal()
+{
+    int indice = -1;
+    for (int i = 0; i < MAX_USERS; i++)
+    {
+        if (tabelaPersonal[i].usuario[0] == '\0')
+        {
+            indice = i;
+            break;
+        }
+    }
+
+    if (indice == -1)
+    {
+        printf("Número máximo de personais atingido!\n");
+        return;
+    }
+
+    printf("Digite o nome de usuário para o novo personal: ");
+    scanf("%s", tabelaPersonal[indice].usuario);
+    printf("Digite a senha para o novo personal: ");
+    scanf("%s", tabelaPersonal[indice].senha);
+    printf("Personal %s cadastrado com sucesso!\n", tabelaPersonal[indice].usuario);
+}
+
+void exibirPersonais()
+{
+    int opcao;
+    do
+    {
+        printf("\n===== LISTA DE PERSONAIS =====\n");
+        for (int i = 0; i < MAX_USERS; i++)
+        {
+            if (tabelaPersonal[i].usuario[0] != '\0')
+            {
+                printf("%d. Usuario: %s, Senha: %s\n", i + 1, tabelaPersonal[i].usuario, tabelaPersonal[i].senha);
+            }
+        }
+        printf("==============================\n");
+        printf("1. Excluir personal\n");
+        printf("2. Cadastrar novo personal\n");
+        printf("3. Sair\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            excluirPersonal();
+            break;
+        case 2:
+            cadastrarPersonal();
+            break;
+        case 3:
+            printf("Saindo...\n");
+            break;
+        default:
+            printf("Opção inválida!\n");
+        }
+    } while (opcao != 3);
+}
+
+int buscarPersonalPorSenha(char senha[])
+{
+    for (int i = 0; i < MAX_USERS; i++)
+    {
+        if (strcmp(tabelaPersonal[i].senha, senha) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void excluirPersonal()
+{
+    char senha[50];
+    printf("Digite a senha do personal para excluir: ");
+    scanf("%s", senha);
+
+    for (int i = 0; i < MAX_USERS; i++)
+    {
+        if (strcmp(tabelaPersonal[i].senha, senha) == 0)
+        {
+            printf("Excluindo personal: %s\n", tabelaPersonal[i].usuario);
+            tabelaPersonal[i].usuario[0] = '\0';
+            tabelaPersonal[i].senha[0] = '\0';
+            printf("Personal excluído com sucesso!\n");
+            return;
+        }
+    }
+    printf("Personal não encontrado!\n");
 }
 
 void menuPersonal()
@@ -223,7 +317,7 @@ void menuPersonal()
             printf("Digite o peso (em kg): ");
             scanf("%f", &peso);
             printf("Digite o sexo (M/F): ");
-            scanf(" %c", &sexo); // o c ta afastado pra nao pegar o espaço
+            scanf(" %c", &sexo);
 
             for (int i = 0; i < MAX_DIAS; i++)
             {
@@ -243,7 +337,7 @@ void menuPersonal()
             editarDieta();
             break;
         case 5:
-            printf("Aqui serao exibidos os outros personais\n");
+            exibirPersonais();
             break;
         case 6:
             printf("Saindo do menu...\n");
