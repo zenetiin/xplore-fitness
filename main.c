@@ -3,15 +3,13 @@
 #include "personal.h"
 #include "aluno.h"
 
-int main()
-{
+int main() {
     inicializarAlunos();
     inicializarUsuarios();
 
     int opcaoLogin;
-
-    do
-    {
+    
+    do {
         printf("===== MENU DE LOGIN =====\n");
         printf("1. Login como Aluno\n");
         printf("2. Login como Personal\n");
@@ -20,8 +18,7 @@ int main()
         printf("Escolha uma opção: ");
         scanf("%d", &opcaoLogin);
 
-        if (opcaoLogin == 1)
-        {
+        if (opcaoLogin == 1) {
             char usuario[50], senha[50];
             printf("Digite seu usuário: ");
             scanf("%s", usuario);
@@ -29,38 +26,26 @@ int main()
             scanf("%s", senha);
 
             int alunoIndex = buscarAlunoPorSenha(senha); 
-            if (alunoIndex != -1)
-            {                          
+            if (alunoIndex != -1) { 
                 menuAluno(alunoIndex); 
-            }
-            else
-            {
+            } else {
                 printf("Login de aluno falhou!\n");
             }
-        }
-        else if (opcaoLogin == 2)
-        {
+        } else if (opcaoLogin == 2) {
             char usuario[50], senha[50];
             printf("Digite seu usuário: ");
             scanf("%s", usuario);
             printf("Digite sua senha: ");
             scanf("%s", senha);
 
-            if (validarLogin(usuario, senha))
-            {
+            if (validarLogin(usuario, senha)) {
                 menuPersonal(); 
-            }
-            else
-            {
+            } else {
                 printf("Login de personal falhou!\n");
             }
-        }
-        else if (opcaoLogin == 3)
-        {
+        } else if (opcaoLogin == 3) {
             printf("Saindo...\n");
-        }
-        else
-        {
+        } else {
             printf("Opção inválida. Tente novamente.\n");
         }
     } while (opcaoLogin != 3);

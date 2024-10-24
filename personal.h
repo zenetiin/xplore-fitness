@@ -10,15 +10,12 @@ extern struct Personal
 };
 
 extern struct Personal tabelaPersonal[MAX_USERS];
-
 void inicializarUsuarios();
 int validarLogin(char usuario[], char senha[]);
 void menuPersonal();
-
-void exibirPersonais();   // Nova função para exibir e excluir personal
-void cadastrarPersonal(); // Nova função para cadastrar um novo personal
-void excluirPersonal();   // Função para excluir personal
-
+void exibirPersonais();   
+void cadastrarPersonal(); 
+void excluirPersonal();   
 void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float peso, char sexo, char treino[][100], char dieta[][100]);
 int buscarAlunoPorSenha(char senha[]);
 void excluirAluno(int indice);
