@@ -12,5 +12,7 @@ void menuPersonal();
 int validarLogin(char usuario[], char senha[]);
 void inicializarUsuarios();
 void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float peso, char sexo, char treino[], char dieta[]);
+int buscarAlunoPorSenha(char senha[]);
+void excluirAluno(int indice);
 
 #endif

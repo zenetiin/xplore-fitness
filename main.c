@@ -37,7 +37,7 @@ int main()
         {
         case 1:
             printf("Usuario: ");
-            scanf("%s", usuario);
+            scanf("%s", usuario); 
             printf("Senha: ");
             scanf("%s", senha);
 

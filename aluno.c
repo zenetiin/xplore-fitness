@@ -5,15 +5,15 @@
 struct Aluno tabelaAluno[MAX_ALUNOS];
 
 void inicializarAlunos()
-{ // anicializar aluno de teste
+{
     printf("Inicializando alunos...\n");
     for (int i = 0; i < MAX_ALUNOS; i++)
     {
-        tabelaAluno[i].usuario[0] = '\0';
-        tabelaAluno[i].senha[0] = '\0';
+        tabelaAluno[i].usuario[0] = '\0'; 
+        tabelaAluno[i].senha[0] = '\0';   
     }
 
-    // adicionando um aluno de teste (ze)
+    // inicializando ze de teste
     strcpy(tabelaAluno[0].usuario, "ze");
     strcpy(tabelaAluno[0].senha, "001002123");
     tabelaAluno[0].idade = 20;
@@ -31,10 +31,10 @@ int validarLoginAluno(char usuario[], char senha[])
         printf("Comparando com: %s, %s\n", tabelaAluno[i].usuario, tabelaAluno[i].senha);
         if (strcmp(tabelaAluno[i].usuario, usuario) == 0 && strcmp(tabelaAluno[i].senha, senha) == 0)
         {
-            return 1;
+            return 1; 
         }
     }
-    return 0;
+    return 0; 
 }
 
 void menuAluno()
