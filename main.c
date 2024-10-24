@@ -20,7 +20,8 @@ int main()
     int opcao;
     char usuario[50], senha[50];
 
-    inicializarUsuarios(); 
+    inicializarUsuarios();
+    inicializarAlunos();
 
     do
     {
@@ -52,7 +53,20 @@ int main()
             break;
 
         case 2:
-            loginAluno();
+            printf("Usuario: ");
+            scanf("%s", usuario);
+            printf("Senha: ");
+            scanf("%s", senha);
+
+            if (validarLoginAluno(usuario, senha))
+            {
+                printf("Login bem sucedido\n");
+                loginAluno();
+            }
+            else
+            {
+                printf("Usuario ou senha incorretos\n");
+            }
             break;
 
         case 3:

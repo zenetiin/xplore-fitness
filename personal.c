@@ -4,6 +4,7 @@
 
 struct Personal tabelaPersonal[MAX_USERS];
 
+// iniciando usuario para teste
 void inicializarUsuarios()
 {
     strcpy(tabelaPersonal[0].usuario, "ryam");
@@ -12,18 +13,18 @@ void inicializarUsuarios()
 
 int validarLogin(char usuario[], char senha[])
 {
-    printf("Validando login...\n"); //debug
+    printf("Validando login...\n"); // debug
     for (int i = 0; i < MAX_USERS; i++)
     {
-        printf("Comparando com o usuário: %s\n", tabelaPersonal[i].usuario); //debug
+        printf("Comparando com o usuário: %s\n", tabelaPersonal[i].usuario); // debug
         if (strcmp(tabelaPersonal[i].usuario, usuario) == 0 && strcmp(tabelaPersonal[i].senha, senha) == 0)
         {
-            printf("Login bem-sucedido!\n"); //Debug
-            return 1;                        
+            printf("Login bem-sucedido!\n"); // debug
+            return 1;
         }
     }
-    printf("Falha no login\n"); //Debug
-    return 0;                   
+    printf("Falha no login\n"); // debug
+    return 0;
 }
 
 void menuPersonal()
