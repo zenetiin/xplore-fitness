@@ -16,5 +16,6 @@ void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float
 int buscarAlunoPorSenha(char senha[]);
 void excluirAluno(int indice);
 void editarTreino();
+void editarDieta();
 
 #endif

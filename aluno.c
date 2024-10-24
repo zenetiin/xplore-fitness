@@ -13,7 +13,7 @@ void inicializarAlunos()
         tabelaAluno[i].senha[0] = '\0';
     }
 
-    // aluno teste ze
+    // Ainiciando zé de teste
     strcpy(tabelaAluno[0].usuario, "ze");
     strcpy(tabelaAluno[0].senha, "001002123");
     tabelaAluno[0].idade = 20;

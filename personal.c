@@ -6,7 +6,7 @@
 struct Personal tabelaPersonal[MAX_USERS];
 struct Aluno tabelaAluno[MAX_ALUNOS];
 
-// inicializando ryam de teste
+// startando ryamzin do grau
 void inicializarUsuarios()
 {
     strcpy(tabelaPersonal[0].usuario, "ryam");
@@ -34,7 +34,7 @@ void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float
     for (int i = 0; i < MAX_ALUNOS; i++)
     {
         if (tabelaAluno[i].usuario[0] == '\0')
-        {
+        { // Encontrar posição vazia
             strcpy(tabelaAluno[i].usuario, usuario);
             strcpy(tabelaAluno[i].senha, senha);
             tabelaAluno[i].idade = idade;
@@ -44,8 +44,8 @@ void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float
 
             for (int j = 0; j < MAX_DIAS; j++)
             {
-                strcpy(tabelaAluno[i].treino[j], treino[j]); // copia os treinos pra o aluno
-                strcpy(tabelaAluno[i].dieta[j], dieta[j]);   // copia as dietas pra o aluno
+                strcpy(tabelaAluno[i].treino[j], treino[j]); // pega os treinos do aluno
+                strcpy(tabelaAluno[i].dieta[j], dieta[j]);   // pega as dietas do aluno
             }
             printf("Aluno %s cadastrado com sucesso!\n", usuario);
             break;
@@ -71,11 +71,41 @@ void editarTreino()
         for (int j = 0; j < MAX_DIAS; j++)
         {
             printf("Digite o treino para %s: ", diasSemana[j]);
-            fgets(treinoDia, sizeof(treinoDia), stdin);
-            treinoDia[strcspn(treinoDia, "\n")] = 0;
-            strcpy(tabelaAluno[indice].treino[j], treinoDia);
+            fgets(treinoDia, sizeof(treinoDia), stdin);       // le a entrada do treino
+            treinoDia[strcspn(treinoDia, "\n")] = 0;          // remove o \n do fgets
+            strcpy(tabelaAluno[indice].treino[j], treinoDia); // bota o treino por cima do antigo
         }
         printf("Treinos atualizados com sucesso para o aluno %s!\n", tabelaAluno[indice].usuario);
+    }
+    else
+    {
+        printf("Aluno não encontrado!\n");
+    }
+}
+
+void editarDieta()
+{
+    char senha[50];
+    printf("Digite a senha do aluno para editar a dieta: ");
+    scanf("%s", senha);
+    getchar();
+
+    int indice = buscarAlunoPorSenha(senha);
+    if (indice != -1)
+    {
+        printf("Aluno encontrado: %s\n", tabelaAluno[indice].usuario);
+
+        char dietaDia[100];
+        const char *diasSemana[7] = {"Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"};
+
+        for (int j = 0; j < MAX_DIAS; j++)
+        {
+            printf("Digite a dieta para %s: ", diasSemana[j]);
+            fgets(dietaDia, sizeof(dietaDia), stdin);       // Le a entrada da dieta todinha
+            dietaDia[strcspn(dietaDia, "\n")] = 0;          // remove o \n do fgets
+            strcpy(tabelaAluno[indice].dieta[j], dietaDia); // joga essa dieta por cima da que tiver la
+        }
+        printf("Dietas atualizadas com sucesso para o aluno %s!\n", tabelaAluno[indice].usuario);
     }
     else
     {
@@ -97,8 +127,8 @@ int buscarAlunoPorSenha(char senha[])
 
 void excluirAluno(int indice)
 {
-    tabelaAluno[indice].usuario[0] = '\0'; // exclui o usuário
-    tabelaAluno[indice].senha[0] = '\0';   // exclui a senha
+    tabelaAluno[indice].usuario[0] = '\0'; // F usuário
+    tabelaAluno[indice].senha[0] = '\0';   // F senha
     printf("Aluno excluído com sucesso.\n");
 }
 
@@ -140,7 +170,7 @@ void exibirInformacoesAluno()
             switch (opcao)
             {
             case 1:
-                excluirAluno(i); // pega o indice (i) do aluno pra excluir
+                excluirAluno(i); // o i é onde o aluno ta na hash
                 return;
             case 2:
                 printf("Retornando ao menu Personal...\n");
@@ -193,7 +223,7 @@ void menuPersonal()
             printf("Digite o peso (em kg): ");
             scanf("%f", &peso);
             printf("Digite o sexo (M/F): ");
-            scanf(" %c", &sexo);
+            scanf(" %c", &sexo); // o c ta afastado pra nao pegar o espaço
 
             for (int i = 0; i < MAX_DIAS; i++)
             {
@@ -210,7 +240,7 @@ void menuPersonal()
             editarTreino();
             break;
         case 4:
-            printf("Aqui será editada a dieta de cada aluno (área sujeita a alteração também)\n");
+            editarDieta();
             break;
         case 5:
             printf("Aqui serao exibidos os outros personais\n");
