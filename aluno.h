@@ -21,6 +21,6 @@ int validarLoginAluno(char usuario[], char senha[]);
 void menuAluno(int alunoIndex);
 void exibirInformacoesPessoais(int alunoIndex);
 void editarInformacoesPessoais(int alunoIndex);
-extern int buscarAlunoPorSenha(char senha[]); // extern pra geral usar
+extern int buscarAlunoPorSenha(char senha[]); 
 
 #endif

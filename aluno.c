@@ -13,6 +13,7 @@ void inicializarAlunos()
         tabelaAluno[i].senha[0] = '\0';   
     }
 
+    // adicionando ze de teste
     strcpy(tabelaAluno[0].usuario, "ze");
     strcpy(tabelaAluno[0].senha, "001002123");
     tabelaAluno[0].idade = 20;
@@ -33,7 +34,7 @@ int validarLoginAluno(char usuario[], char senha[])
             return 1; 
         }
     }
-    return 0; 
+    return 0;
 }
 
 void exibirInformacoesPessoais(int alunoIndex)
@@ -80,9 +81,21 @@ void editarInformacoesPessoais(int alunoIndex)
     scanf("%f", &tabelaAluno[alunoIndex].peso);
 
     printf("Novo Sexo (M/F): ");
-    scanf(" %c", &tabelaAluno[alunoIndex].sexo); // espaço pra o buffer n vissar
+    scanf(" %c", &tabelaAluno[alunoIndex].sexo); // O espaço é pra a kceta do buffer
 
     printf("Informações atualizadas com sucesso!\n");
+}
+
+void exibirTreino(int alunoIndex)
+{
+    printf("\n--- Treino ---\n");
+    for (int dia = 0; dia < MAX_DIAS; dia++)
+    {
+        printf("Dia %d: %s\n", dia + 1, tabelaAluno[alunoIndex].treino[dia]);
+    }
+    printf("\nPressione qualquer tecla para voltar ao menu aluno...");
+    getchar(); 
+    getchar(); 
 }
 
 void menuAluno(int alunoIndex)
@@ -105,7 +118,7 @@ void menuAluno(int alunoIndex)
             exibirInformacoesPessoais(alunoIndex);
             break;
         case 2:
-            printf("Aqui exibe o treino do aluno logado\n");
+            exibirTreino(alunoIndex);
             break;
         case 3:
             printf("Aqui exibe a dieta do aluno logado\n");

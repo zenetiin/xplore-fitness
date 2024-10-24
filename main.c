@@ -8,7 +8,7 @@ int main()
     inicializarAlunos();
     inicializarUsuarios();
 
-    int opcaoLogin; // alteração do menu para a opção login, mais facil
+    int opcaoLogin;
 
     do
     {
@@ -28,7 +28,7 @@ int main()
             printf("Digite sua senha: ");
             scanf("%s", senha);
 
-            int alunoIndex = buscarAlunoPorSenha(senha); // acha o caba pelo indice da senha aqui ó
+            int alunoIndex = buscarAlunoPorSenha(senha); 
             if (alunoIndex != -1)
             {                          
                 menuAluno(alunoIndex); 
@@ -48,7 +48,7 @@ int main()
 
             if (validarLogin(usuario, senha))
             {
-                menuPersonal();
+                menuPersonal(); 
             }
             else
             {
