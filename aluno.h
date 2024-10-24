@@ -1,8 +1,9 @@
 #ifndef ALUNO_H
 #define ALUNO_H
 #define MAX_ALUNOS 10
+#define MAX_DIAS 7
 
-struct Aluno
+extern struct Aluno
 {
     char usuario[50];
     char senha[50];
@@ -10,11 +11,11 @@ struct Aluno
     float altura;
     float peso;
     char sexo;
-    char treino[100];
-    char dieta[100];
+    char treino[MAX_DIAS][100];
+    char dieta[MAX_DIAS][100];
 };
 
-extern struct Aluno tabelaAluno[MAX_ALUNOS]; //extern pra uso geral
+extern struct Aluno tabelaAluno[MAX_ALUNOS];
 void inicializarAlunos();
 int validarLoginAluno(char usuario[], char senha[]);
 void menuAluno();
