@@ -15,9 +15,9 @@ struct Aluno
     char dieta[100];
 };
 
+extern struct Aluno tabelaAluno[MAX_ALUNOS];
 void inicializarAlunos();
 int validarLoginAluno(char usuario[], char senha[]);
-void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float peso, char sexo, char treino[], char dieta[]);
 void menuAluno();
 
 #endif

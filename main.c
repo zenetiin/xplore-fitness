@@ -37,7 +37,7 @@ int main()
         {
         case 1:
             printf("Usuario: ");
-            scanf("%s", usuario); 
+            scanf("%s", usuario);
             printf("Senha: ");
             scanf("%s", senha);
 
@@ -57,7 +57,7 @@ int main()
             scanf("%s", usuario);
             printf("Senha: ");
             scanf("%s", senha);
-
+            
             if (validarLoginAluno(usuario, senha))
             {
                 printf("Login bem sucedido\n");

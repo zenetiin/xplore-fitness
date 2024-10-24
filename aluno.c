@@ -5,15 +5,15 @@
 struct Aluno tabelaAluno[MAX_ALUNOS];
 
 void inicializarAlunos()
-{
-    printf("Inicializando aluno\n");
+{ // anicializar aluno de teste
+    printf("Inicializando alunos...\n");
     for (int i = 0; i < MAX_ALUNOS; i++)
     {
-        tabelaAluno[i].usuario[0] = '\0'; // Inicializando com string vazia
-        tabelaAluno[i].senha[0] = '\0';   // Inicializando a senha como vazia também
+        tabelaAluno[i].usuario[0] = '\0';
+        tabelaAluno[i].senha[0] = '\0';
     }
 
-    // Adicionando um aluno de teste (ze)
+    // adicionando um aluno de teste (ze)
     strcpy(tabelaAluno[0].usuario, "ze");
     strcpy(tabelaAluno[0].senha, "001002123");
     tabelaAluno[0].idade = 20;
@@ -35,26 +35,6 @@ int validarLoginAluno(char usuario[], char senha[])
         }
     }
     return 0;
-}
-
-void cadastrarAluno(char usuario[], char senha[], int idade, float altura, float peso, char sexo, char treino[], char dieta[])
-{
-    for (int i = 0; i < MAX_ALUNOS; i++)
-    {
-        if ((tabelaAluno[i].usuario[0]) == '\0')
-        {
-            strcpy(tabelaAluno[i].usuario, usuario);
-            strcpy(tabelaAluno[i].senha, senha);
-            tabelaAluno[i].idade = idade;
-            tabelaAluno[i].altura = altura;
-            tabelaAluno[i].peso = peso;
-            tabelaAluno[i].sexo = sexo;
-            strcpy(tabelaAluno[i].treino, treino);
-            strcpy(tabelaAluno[i].dieta, dieta);
-            printf("Aluno %s cadastrado com sucesso!\n", usuario);
-            break;
-        }
-    }
 }
 
 void menuAluno()
